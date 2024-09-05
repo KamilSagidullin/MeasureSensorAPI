@@ -15,21 +15,22 @@ public class Measurement {
     private double value;
     @Column(name = "raining")
     private boolean raining;
-    @Column(name = "sensor_id")
-    private int sensorId;
+
     @Column(name = "created_time")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date createdTime;
+    @ManyToOne()
+    @JoinColumn(name = "sensor_id",referencedColumnName = "id")
+    private Sensor sensor;
 
-    public Measurement(){
+    public Measurement() {
 
     }
 
-    public Measurement(int id, double value, boolean raining, int sensorId, Date createdTime) {
+    public Measurement(int id, double value, boolean raining,  Date createdTime) {
         this.id = id;
         this.value = value;
         this.raining = raining;
-        this.sensorId = sensorId;
         this.createdTime = createdTime;
     }
 
@@ -57,13 +58,6 @@ public class Measurement {
         this.raining = raining;
     }
 
-    public int getSensorId() {
-        return sensorId;
-    }
-
-    public void setSensorId(int sensorId) {
-        this.sensorId = sensorId;
-    }
 
     public Date getCreatedTime() {
         return createdTime;

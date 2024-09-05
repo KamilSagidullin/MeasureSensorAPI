@@ -1,6 +1,9 @@
 package org.kamil.measuresensorapi.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+
+import java.util.List;
 
 @Entity
 @Table(name = "sensor")
@@ -11,6 +14,9 @@ public class Sensor {
     private int id;
     @Column(name = "name")
     private String name;
+    @OneToMany(mappedBy = "sensor")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private List<Measurement> measurements;
 
     public Sensor(){
 
@@ -37,4 +43,3 @@ public class Sensor {
         this.name = name;
     }
 }
-//TODO:Add One-to-Many relation
