@@ -11,8 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/sensors")
 public class SensorController {
     private final ModelMapper modelMapper;
@@ -27,7 +28,7 @@ public class SensorController {
     @PostMapping("/registration")
     public ResponseEntity<HttpStatus> registrate(@RequestBody SensorDTO sensorDTO) {
         sensorService.save(modelMapper.map(sensorDTO,Sensor.class));
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
 
     }
 }

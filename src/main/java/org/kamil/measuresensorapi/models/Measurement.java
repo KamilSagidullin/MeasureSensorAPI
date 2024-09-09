@@ -66,4 +66,12 @@ public class Measurement {
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
+
+    public Sensor getSensor() {
+        return sensor;
+    }
+
+    public void setSensor(Sensor sensor) {
+        this.sensor = sensor;
+    }
 }
