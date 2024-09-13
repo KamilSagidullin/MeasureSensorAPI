@@ -5,7 +5,9 @@ import org.kamil.measuresensorapi.models.Sensor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface MeasurementRepository extends JpaRepository<Measurement,Integer> {
-    Measurement findBySensor(Sensor sensor);
+    List<Measurement> findBySensor(Sensor sensor);
 }

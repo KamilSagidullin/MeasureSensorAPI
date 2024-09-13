@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MeasurementService {
@@ -20,6 +22,15 @@ public class MeasurementService {
         this.sensorService = sensorService;
     }
 
+
+    @Transactional
+    public List<Measurement> findAll(){
+        return measurementRepository.findAll();
+    }
+    @Transactional
+    public int getRainyDaysCount(){
+        return findAll().stream().filter(Measurement::isRaining).toList().size();
+    }
     @Transactional
     public void save(Measurement measurement) {
        measurement.getSensor().setId(sensorService.findByName(measurement.getSensor().getName()).getId());
