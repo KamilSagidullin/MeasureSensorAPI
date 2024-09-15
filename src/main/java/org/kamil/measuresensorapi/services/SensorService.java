@@ -6,6 +6,8 @@ import org.kamil.measuresensorapi.repositories.SensorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class SensorService {
     private final SensorRepository sensorRepository;
@@ -15,7 +17,7 @@ public class SensorService {
         this.sensorRepository = sensorRepository;
     }
     @Transactional
-    public Sensor findByName(String name){
+    public Optional<Sensor> findByName(String name){
         return sensorRepository.findByName(name);
     }
     @Transactional

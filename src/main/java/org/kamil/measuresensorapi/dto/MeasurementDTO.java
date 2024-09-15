@@ -1,10 +1,15 @@
 package org.kamil.measuresensorapi.dto;
 
+import jakarta.validation.constraints.*;
 import org.kamil.measuresensorapi.models.Sensor;
 
 public class MeasurementDTO {
+    @Min(value = -100,message = "Value must be between -100 and 100")
+    @Max(value = 100,message = "Value must be between -100 and 100")
     private double value;
-    private boolean raining;
+    @NotNull(message = "This field must be not empty")
+    private Boolean raining;
+    @NotNull(message = "This field must not be empty")
     private Sensor sensor;
 
     public MeasurementDTO() {
