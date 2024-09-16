@@ -1,6 +1,7 @@
 package org.kamil.measuresensorapi.controllers;
 
 import jakarta.validation.Valid;
+import org.kamil.measuresensorapi.client.MeasurementResponse;
 import org.kamil.measuresensorapi.dto.MeasurementDTO;
 import org.kamil.measuresensorapi.models.Measurement;
 import org.kamil.measuresensorapi.services.MeasurementService;
@@ -17,7 +18,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/measurements")
@@ -49,8 +52,8 @@ public class MeasurementController {
     }
 
     @GetMapping()
-    public List<Measurement> getMeasurements() {
-        return measurementService.findAll();
+    public MeasurementResponse getMeasurements() {
+        return new MeasurementResponse(new ArrayList<>(measurementService.findAll()));
     }
 
     @GetMapping("/rainyDaysCount")
